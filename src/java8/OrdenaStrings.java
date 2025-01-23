@@ -43,12 +43,25 @@ public class OrdenaStrings {
 		palavras.forEach(p -> System.out.println("No forEach =>" + p));
 		
 		
+		// Comparando maior  com lambda.
+		palavras.sort((o1,o2) -> Integer.compare(o1.length(), o2.length()));
+		// Até podemos fugir do método compare, subtraindo os valores:
+		palavras.sort((s1, s2) -> s1.length() - s2.length());
+		
+		
+		System.out.println("***************************************");
+		//  usando lambdas  com Method references
+		palavras.sort(Comparator.comparing(s -> s.length()));
+		System.out.println(palavras);
+		
+		//E finalmente a sintax reduzida
+		palavras.sort(Comparator.comparing(String::length));
 	}
 }
  
 class ComparadorPorTamanho implements Comparator<String>{
 	
-	// usando outro metodo para comparar
+	// usando outro metodo antigo para comparar
 
 	@Override
 	public int compare(String o1, String o2) {
@@ -59,5 +72,11 @@ class ComparadorPorTamanho implements Comparator<String>{
 		}
 		return 0;
 	}
+	
+	
+	
+	
+	
+	
 	
 }
