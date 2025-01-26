@@ -3,6 +3,7 @@ package java8;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,10 @@ public class TestaCurso {
 				.sum();
 		System.out.println(sum);
 		
+		cursos.stream()
+		   .filter(c -> c.getAlunos() > 50)
+		   .findFirst(); // Pefando o primeiro
+		
 		// Incluindo em uma List ou Set ou Map
 		List<Curso> resultado = cursos.stream()
 				// ou:  curso  = cursos.stream()
@@ -54,6 +59,12 @@ public class TestaCurso {
 		.collect(Collectors.toMap(c -> c.getNome(),
 				c -> c.getAlunos()));
 		System.out.println(cursos);
+		
+		// calculando média de notas
+		OptionalDouble average = cursos.stream()
+	    .mapToInt(c -> c.getAlunos())
+	    .average();
+		System.out.println(average);
 	}
 
 }
